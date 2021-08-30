@@ -1,20 +1,20 @@
 import { useState } from "react";
+import "./sign-in.styles.scss";
+import FormInput from "../form-input/form-input.component";
+import CustomButton from "../custom-button/custom-button.component";
+
+const defaultValue = {
+  email: "",
+  password: "",
+};
 
 const SignIn = () => {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  const [state, setState] = useState({
-    email: "",
-    password: "",
-  });
+  const [state, setState] = useState(defaultValue);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setState({
-      email: "",
-      password: "",
-    });
+    setState(defaultValue);
   };
 
   const handleChange = (e) => {
@@ -29,23 +29,25 @@ const SignIn = () => {
       <span>Sign in with your email and password.</span>
 
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input
+        <FormInput
           name="email"
           type="email"
           value={state.email}
-          onChange={(e) => handleChange(e)}
+          handleChange={(e) => handleChange(e)}
+          label="Email"
           required
         />
-        <label>Email</label>
-        <input
+        <FormInput
           name="password"
           type="password"
           value={state.password}
-          onChange={(e) => handleChange(e)}
+          handleChange={(e) => handleChange(e)}
+          label="Password"
           required
         />
-        <label>Password</label>
-        <input type="submit" value="Submit Form" />
+        <CustomButton type="submit" value="Submit Form">
+          Sign In
+        </CustomButton>
       </form>
     </div>
   );
